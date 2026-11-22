@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package calendar.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// API Request/Response Messages
+
+message CreateEventRequest {
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end = 2;
+  string title = 3;
+  string description = 4;
+  repeated string tags = 5;
+}
+
+message ListEventsRequest {
+  google.protobuf.Timestamp start = 1;
+  google.protobuf.Timestamp end = 2;
+  repeated string tags = 3;
+  string cursor = 4;
+  int32 page_size = 5;
+}
+
+message ListEventsResponse {
+  repeated Event events = 1;
+  string next_cursor = 2;
+}
+
+message UpdateEventRequest {
+  string id = 1;
+  // Using optional to support PATCH behavior (only update provided fields)
+  optional google.protobuf.Timestamp start = 2;
+  optional google.protobuf.Timestamp end = 3;
+  optional string title = 4;
+  optional string description = 5;
+  optional repeated string tags = 6;
+}
+
+message DeleteEventRequest {
+  string id = 1;
+}
+
+message Empty {}

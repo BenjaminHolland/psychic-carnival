@@ -1,9 +1,12 @@
 package land.generic
 
+import io.ktor.http.ContentType
+import io.ktor.openapi.OpenApiInfo
 import io.ktor.server.application.*
 import io.ktor.server.plugins.openapi.*
 import io.ktor.server.routing.*
 import io.ktor.server.plugins.swagger.*
+import io.ktor.server.routing.openapi.OpenApiDocSource
 
 fun Application.configureHttp() {
     routing {
@@ -18,7 +21,12 @@ fun Application.configureHttp() {
         }
     }
     routing {
-        swaggerUI(path = "openapi") {
+        swaggerUI(path = "/swagger") {
+            info = OpenApiInfo("Psychic Carnival","1.0")
+            tag("Events", description = "Operations on events")
+            source = OpenApiDocSource.Routing(ContentType.Application.Json){
+                routingRoot.descendants()
+            }
             /*
              Documentation source configuration goes here.
     

@@ -9,6 +9,7 @@ grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc-netty" }
 kotlinx-rpc-grpc-client = { module = "org.jetbrains.kotlinx:kotlinx-rpc-grpc-client", version.ref = "kotlinx-rpc-grpc" }
 kotlinx-rpc-grpc-core = { module = "org.jetbrains.kotlinx:kotlinx-rpc-grpc-core", version.ref = "kotlinx-rpc-grpc" }
 kotlinx-rpc-grpc-ktorServer = { module = "org.jetbrains.kotlinx:kotlinx-rpc-grpc-ktor-server", version.ref = "kotlinx-rpc-grpc" }
+kotlinx-rpc-grpc-protobuf = { module = "org.jetbrains.kotlinx:kotlinx-rpc-protobuf", version.ref = "kotlinx-rpc-grpc"}
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
 [plugins]

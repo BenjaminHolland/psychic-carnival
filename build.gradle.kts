@@ -6,7 +6,14 @@ plugins {
     alias(libs.plugins.kotlinx.rpc.grpc) apply false
 }
 
-subprojects {
-    group = "land.generic"
-    version = "1.0.0-SNAPSHOT"
+
+tasks.matching { it.name.startsWith("generateBufGenYaml") }.configureEach {
+    doLast {
+        outputs.files.filter { it.name == "buf.gen.yaml" && it.exists() }.forEach { file ->
+            val cleaned = file.readLines()
+                .filterNot { it.contains("explicitApiModeEnabled") }
+                .joinToString("\n")
+            file.writeText(cleaned)
+        }
+    }
 }

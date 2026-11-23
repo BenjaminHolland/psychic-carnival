@@ -1,6 +1,17 @@
 syntax = "proto3";
 
 package land.generic;
+option go_package = "land.generic/gen;gen";
+import "google/api/annotations.proto";
+import "gnostic/openapi/v3/annotations.proto";
+
+// 1. Gnostic sets document-level OpenAPI metadata
+option (gnostic.openapi.v3.document) = {
+  info: {
+    title: "Greeter API"
+    version: "1.0.0"
+  }
+};
 
 message ClientGreeting {
   string name = 1;
@@ -11,5 +22,11 @@ message ServerGreeting {
 }
 
 service SampleService {
-  rpc greeting(ClientGreeting) returns (ServerGreeting);
+  rpc greeting(ClientGreeting) returns (ServerGreeting){
+    option (google.api.http) = {
+        post: "/v1/hello",
+        body: "*"
+    };
+  }
 }
+

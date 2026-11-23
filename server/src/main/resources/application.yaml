@@ -1,6 +1,6 @@
 ktor:
   deployment:
-    port: 8080
+    port: 1992
   application:
     modules:
       - land.generic.HttpKt.configureHttp

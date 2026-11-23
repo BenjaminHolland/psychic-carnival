@@ -1,0 +1,27 @@
+version: v2
+clean: true
+plugins:
+  - local: [/usr/lib/jvm/java-25-openjdk/bin/java, -jar, /home/ben/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/protoc-gen-kotlin-multiplatform/0.11.0-grpc-190/f5186bee9807bc9e881fc7c1024fbc72d3fbd4b6/protoc-gen-kotlin-multiplatform-0.11.0-grpc-190-all.jar]
+    out: kotlin-multiplatform
+    opt:
+      - debugOutput=protoc-gen-kotlin-multiplatform.log
+      - generateComments=true
+      - generateFileLevelComments=true
+      - generateOptionalFieldOrNullGetters=false
+      - indentSize=4
+      - camelCaseNames=true
+      - explicitApiModeEnabled=false
+      - platform=jvm
+  - local: [/usr/lib/jvm/java-25-openjdk/bin/java, -jar, /home/ben/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/protoc-gen-grpc-kotlin-multiplatform/0.11.0-grpc-190/5c7d534a8fb878e23a4c96f5f8956b575e6a21fd/protoc-gen-grpc-kotlin-multiplatform-0.11.0-grpc-190-all.jar]
+    out: grpc-kotlin-multiplatform
+    opt:
+      - debugOutput=protoc-gen-grpc-kotlin-multiplatform.log
+      - generateComments=true
+      - generateFileLevelComments=true
+      - generateOptionalFieldOrNullGetters=false
+      - indentSize=4
+      - camelCaseNames=true
+      - explicitApiModeEnabled=false
+      - platform=jvm
+inputs:
+  - directory: proto

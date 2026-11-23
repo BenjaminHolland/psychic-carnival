@@ -21,12 +21,9 @@ fun Application.configureHttp() {
         }
     }
     routing {
-        swaggerUI(path = "/swagger") {
+        swaggerUI(path = "/swagger", swaggerFile = "openapi/openapi.json") {
             info = OpenApiInfo("Psychic Carnival","1.0")
-            tag("Events", description = "Operations on events")
-            source = OpenApiDocSource.Routing(ContentType.Application.Json){
-                routingRoot.descendants()
-            }
+
             /*
              Documentation source configuration goes here.
     

@@ -27,6 +27,10 @@ service SampleService {
         post: "/v1/hello",
         body: "*"
     };
+    option (gnostic.openapi.v3.operation) = {
+      summary: "Say Hello"
+      description: "Just says hello. That's it"
+    };
   }
 }
 

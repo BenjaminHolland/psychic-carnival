@@ -22,7 +22,7 @@ rpc {
             // add the opeapi v3 generator plugin.
             create("openapi") {
                 remote {
-                    locator = "buf.build/grpc-ecosystem/openapiv3"
+                    locator = "buf.build/community/google-gnostic-openapi"
                 }
 //                options.put("generate_unbound_methods", "true")
             }
@@ -42,6 +42,9 @@ kotlin {
                     getByName("openapi")
                 }
             }
+            resources.srcDir(files(layout.buildDirectory.dir("protoBuild/generated/commonMain")) {
+                builtBy("bufGenerateCommonMain")
+            })
             dependencies {
                 implementation(libs.kotlinx.rpc.grpc.core)
                 implementation(libs.kotlinx.rpc.grpc.protobuf)
@@ -57,15 +60,15 @@ tasks.matching { it.name.startsWith("generateBufGenYamlCommon") }.configureEach 
         file.writeText(file.readLines().filterNot { "explicitApiModeEnabled=" in it || "platform=" in it }.joinToString("\n"))
     }
 }
-
-/**
- * Add the generated openapi definition to the output resources.
- */
-tasks.named<ProcessResources>("jvmProcessResources") {
-    // before processing resources, make sure that the proto generator runs.
-    dependsOn("bufGenerateCommonMain")
-    // shove the output from the generate files into the jar.
-    from(layout.buildDirectory.dir("protoBuild/generated/commonMain/openapi")){
-        into("openapi")
-    }
-}
+//
+///**
+// * Add the generated openapi definition to the output resources.
+// */
+//tasks.named<ProcessResources>("jvmProcessResources") {
+//    // before processing resources, make sure that the proto generator runs.
+//    dependsOn("bufGenerateCommonMain")
+//    // shove the output from the generate files into the jar.
+//    from(layout.buildDirectory.dir("protoBuild/generated/commonMain/openapi")){
+//        into("openapi")
+//    }
+//}

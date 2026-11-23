@@ -7,6 +7,8 @@ import io.ktor.server.routing.*
 fun Application.configureRouting() {
     routing {
         get("/") {
+            val x = this::class.java.getResourceAsStream("/openapi/openapi.json")?.reader()?.readText()
+            log.info(x)
             call.respondText("Hello, World!")
         }
         get("/json/kotlinx-serialization") {

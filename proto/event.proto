@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package calendar.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// The core Event resource
+message Event {
+  string id = 1; // UUID
+  google.protobuf.Timestamp start = 2;
+  google.protobuf.Timestamp end = 3;
+  string title = 4;
+  string description = 5;
+  repeated string tags = 6;
+}

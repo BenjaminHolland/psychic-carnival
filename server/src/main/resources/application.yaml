@@ -1,0 +1,11 @@
+ktor:
+  deployment:
+    port: 8080
+  application:
+    modules:
+      - land.generic.HttpKt.configureHttp
+      - land.generic.MonitoringKt.configureMonitoring
+      - land.generic.SerializationKt.configureSerialization
+      - land.generic.DIKt.configureDependencyInjection
+      - land.generic.GrpcKt.configureGrpc
+      - land.generic.RoutingKt.configureRouting

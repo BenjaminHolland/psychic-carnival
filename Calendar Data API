@@ -1,0 +1,28 @@
+# Calendar Data API
+
+## Data
+### Event Structure
+- id - UUID
+- Start
+- End
+- Title
+- Description
+- Tags
+
+### Event Audit Structure
+- Creation Information
+  - Event, Who, When
+- Cancellation Info
+  - Event,Who, When
+- Deletion Info
+  - Event,Who, When
+- Update Info
+  - Event, Who, When, Which Fields
+
+# API
+- Create Events
+- Read all events in a given time frame (start inclusive, end exclusive)
+  - Paged using cursors instead of page numbers
+  - filterable by tag
+- Update Start,End,Title,Tags, and Description of a given event
+- Delete Event

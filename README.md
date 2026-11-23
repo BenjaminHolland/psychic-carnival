@@ -1,28 +1,49 @@
-# Calendar Data API
+# events
 
-## Data
-### Event Structure
-- id - UUID 
-- Start
-- End
-- Title
-- Description
-- Tags
+This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
-### Event Audit Structure
-- Creation Information
-  - Event, Who, When
-- Cancellation Info
-  - Event,Who, When
-- Deletion Info
-  - Event,Who, When
-- Update Info
-  - Event, Who, When, Which Fields
+Here are some useful links to get you started:
+ * [Ktor Documentation](https://ktor.io/docs/home.html)
+ * [Ktor GitHub page](https://github.com/ktorio/ktor)
+ * [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). [Request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up).
 
-# API 
-- Create Events
-- Read all events in a given time frame (start inclusive, end exclusive)
-  - Paged using cursors instead of page numbers
-  - filterable by tag
-- Update Start,End,Title,Tags, and Description of a given event
-- Delete Event
+
+## Features
+Here's a list of features included in this project:
+
+| Name | Description |
+|------|-------------|
+| [Dependency Injection](https://start.ktor.io/p/io.ktor/server-di) | Enables dependency injection for your server |
+| [Metrics](https://start.ktor.io/p/io.ktor/server-metrics) | Adds supports for monitoring several metrics |
+| [Call Logging](https://start.ktor.io/p/io.ktor/server-call-logging) | Logs client requests |
+| [kotlinx.serialization](https://start.ktor.io/p/io.ktor/server-kotlinx-serialization) | Handles JSON serialization using kotlinx.serialization library |
+| [Content Negotiation](https://start.ktor.io/p/io.ktor/server-content-negotiation) | Provides automatic content conversion according to Content-Type and Accept headers |
+| [gRPC](https://start.ktor.io/p/org.jetbrains/kotlinx-rpc-grpc) | Adds gRPC services to your Ktor server with kotlinx.rpc |
+| [OpenAPI](https://start.ktor.io/p/io.ktor/server-openapi) | Serves OpenAPI documentation |
+| [Swagger](https://start.ktor.io/p/io.ktor/server-swagger) | Serves Swagger UI for your project |
+
+## Structure
+This project includes the following modules:
+
+| Path | Description |
+|------|-------------|
+|  | null |
+| client | null |
+| core | null |
+| server | null |
+
+## Building & Running
+To build or run the project, use one of the following tasks:
+
+
+| Task | Description |
+|------|-------------|
+| `./gradlew :server:test`    | Run the tests     |
+| `./gradlew :server:build`   | Build the project |
+| `./gradlew :server:run`     | Run the server    |
+
+If the server starts successfully, you'll see the following output:
+```
+2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
+2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
+```

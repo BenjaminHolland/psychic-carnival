@@ -19,17 +19,19 @@ kotlin {
 }
 dependencies {
     implementation(ktorLibs.serialization.kotlinx.json)
+    implementation(ktorLibs.server.callLogging)
     implementation(ktorLibs.server.config.yaml)
     implementation(ktorLibs.server.contentNegotiation)
     implementation(ktorLibs.server.core)
+    implementation(ktorLibs.server.di)
+    implementation(ktorLibs.server.metrics)
     implementation(ktorLibs.server.netty)
+    implementation(ktorLibs.server.openapi)
     implementation(ktorLibs.server.routingOpenapi)
     implementation(ktorLibs.server.swagger)
     implementation(libs.grpc.netty)
-    implementation(libs.h2database.h2)
     implementation(libs.kotlinx.rpc.grpc.ktorServer)
     implementation(libs.logback.classic)
-    implementation(libs.postgresql)
     implementation(project(":core"))
 
     testImplementation(kotlin("test"))

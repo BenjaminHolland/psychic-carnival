@@ -1,19 +1,15 @@
 [versions]
 grpc-netty = "1.84.0"
-h2 = "2.5.250"
 kotlin = "2.4.20"
 kotlinx-rpc-grpc = "0.11.0-grpc-190"
 logback = "1.6.3"
-postgresql = "42.7.13"
 
 [libraries]
 grpc-netty = { module = "io.grpc:grpc-netty", version.ref = "grpc-netty" }
-h2database-h2 = { module = "com.h2database:h2", version.ref = "h2" }
 kotlinx-rpc-grpc-client = { module = "org.jetbrains.kotlinx:kotlinx-rpc-grpc-client", version.ref = "kotlinx-rpc-grpc" }
 kotlinx-rpc-grpc-core = { module = "org.jetbrains.kotlinx:kotlinx-rpc-grpc-core", version.ref = "kotlinx-rpc-grpc" }
 kotlinx-rpc-grpc-ktorServer = { module = "org.jetbrains.kotlinx:kotlinx-rpc-grpc-ktor-server", version.ref = "kotlinx-rpc-grpc" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
-postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

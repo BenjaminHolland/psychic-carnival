@@ -1,5 +1,12 @@
 # events
 
+# SETUP
+you must install go and use
+go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
+
+to get the plugin, and then probably modify the build file to point to
+an appropriate location. this will be fixed in future commits. 
+
 This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
 Here are some useful links to get you started:
@@ -47,3 +54,4 @@ If the server starts successfully, you'll see the following output:
 2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
 2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
 ```
+

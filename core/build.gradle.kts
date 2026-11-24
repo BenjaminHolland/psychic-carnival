@@ -1,3 +1,4 @@
+import kotlinx.rpc.protoc.grpcKotlinMultiplatformProtocPluginJarPath
 import kotlinx.rpc.protoc.proto
 
 plugins {
@@ -9,25 +10,30 @@ plugins {
 
 rpc {
     protoc{
+
         // use Buf to generate protos
         buf {
-            deps {
-                // Pulls google/api/annotations.proto and google/api/http.proto
-                module("buf.build/googleapis/googleapis")
-                // Pulls gnostic/openapi/v3/annotations.proto
-                module("buf.build/gnostic/gnostic")
-            }
+//            deps {
+//                // Pulls google/api/annotations.proto and google/api/http.proto
+//                module("buf.build/googleapis/googleapis")
+//                // Pulls gnostic/openapi/v3/annotations.proto
+//                module("buf.build/gnostic/gnostic")
+//            }
+
         }
+
         plugins {
             // add the opeapi v3 generator plugin.
             create("openapi") {
-                remote {
-                    locator = "buf.build/community/google-gnostic-openapi"
-                }
-//                options.put("generate_unbound_methods", "true")
+                    local {
+                        // Point directly to the executable (e.g., ~/go/bin/protoc-gen-openapi)
+                        executor(rootProject.file("tools/bin/protoc-gen-openapi").absolutePath)
+                    }
             }
         }
     }
+
+
 }
 
 kotlin {
@@ -38,6 +44,13 @@ kotlin {
         commonMain{
             // use the openapi plugin.
             proto {
+                fileImports.from(
+                    fileTree("third_party/googleapis") {
+                        include("**/*.proto")
+                    })
+                fileImports.from(fileTree("third_party/gnostic") {
+                    include("**/*.proto")
+                })
                 plugin {
                     getByName("openapi")
                 }
@@ -45,14 +58,20 @@ kotlin {
             resources.srcDir(files(layout.buildDirectory.dir("protoBuild/generated/commonMain")) {
                 builtBy("bufGenerateCommonMain")
             })
+
             dependencies {
+                implementation("io.grpc:grpc-kotlin-stub:1.4.1")
+                implementation("io.grpc:grpc-protobuf:1.68.1")
+                implementation("com.google.protobuf:protobuf-kotlin:4.28.2")
                 implementation(libs.kotlinx.rpc.grpc.core)
                 implementation(libs.kotlinx.rpc.grpc.protobuf)
             }
         }
-
     }
 }
+
+
+
 // fix a dumb bug where the rpc plugin injects explicitApiModeEnabled when that doesn't exist.
 tasks.matching { it.name.startsWith("generateBufGenYamlCommon") }.configureEach {
     doLast {

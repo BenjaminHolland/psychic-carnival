@@ -10,18 +10,6 @@ plugins {
 
 rpc {
     protoc{
-
-        // use Buf to generate protos
-        buf {
-//            deps {
-//                // Pulls google/api/annotations.proto and google/api/http.proto
-//                module("buf.build/googleapis/googleapis")
-//                // Pulls gnostic/openapi/v3/annotations.proto
-//                module("buf.build/gnostic/gnostic")
-//            }
-
-        }
-
         plugins {
             // add the opeapi v3 generator plugin.
             create("openapi") {
@@ -45,12 +33,7 @@ kotlin {
             // use the openapi plugin.
             proto {
                 fileImports.from(
-                    fileTree("third_party/googleapis") {
-                        include("**/*.proto")
-                    })
-                fileImports.from(fileTree("third_party/gnostic") {
-                    include("**/*.proto")
-                })
+                    rootProject.file("third_party/proto/googleapis"))
                 plugin {
                     getByName("openapi")
                 }

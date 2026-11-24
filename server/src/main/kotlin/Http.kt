@@ -21,7 +21,7 @@ fun Application.configureHttp() {
         }
     }
     routing {
-        swaggerUI(path = "/swagger", swaggerFile = "openapi/openapi.json") {
+        swaggerUI(path = "/swagger", swaggerFile = "openapi/openapi.yaml") {
             info = OpenApiInfo("Psychic Carnival","1.0")
 
             /*

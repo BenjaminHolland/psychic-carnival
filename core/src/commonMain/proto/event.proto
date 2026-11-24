@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package calendar.v1;
+package land.generic.calendar.v1;
 
 import "google/protobuf/timestamp.proto";
-
+option go_package = "land.generic.event/gen;gen";
 // The core Event resource
 message Event {
   string id = 1; // UUID

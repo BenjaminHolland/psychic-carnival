@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package land.generic.calendar.v1;
+option go_package = "land.generic.event/gen;gen";
+import "gnostic/openapi/v3/annotations.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "event.proto";
+
+
+service EventService {
+  rpc createEvent(CreateEventRequest) returns (CreateEventResponse) {
+    option (google.api.http) = {
+        post: "/v1/events",
+        body: "*"
+    };
+    option (gnostic.openapi.v3.operation) = {
+      summary: "Create Event"
+      description: "Creates a new calendar event"
+      operation_id: "createEvent"
+      tags: ["Events"]
+    };
+  }
+}
+
+message CreateEventResponse {
+  Event event = 1;
+}
+
+message CreateEventRequest {
+  google.protobuf.Timestamp start = 1 [
+    (gnostic.openapi.v3.property) = {
+      description: "The start time of the event"
+    }
+  ];
+  google.protobuf.Timestamp end = 2 [
+    (gnostic.openapi.v3.property) = {
+      description: "The end time of the event"
+    }
+  ];
+  string title = 3 [
+    (gnostic.openapi.v3.property) = {
+      description: "The title of the event"
+      example: {value: { value: "Team Sync" }}
+    }
+  ];
+  string description = 4 [
+    (gnostic.openapi.v3.property) = {
+      description: "Detailed description of the event"
+    }
+  ];
+  repeated string tags = 5 [
+    (gnostic.openapi.v3.property) = {
+      description: "Searchable tags associated with the event"
+      example:{value: { value: "work" }}
+
+    }
+  ];
+}

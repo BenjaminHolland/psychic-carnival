@@ -1,11 +1,12 @@
 syntax = "proto3";
 
-package calendar.v1;
+package land.generic.calendar.v1;
 
 import "google/protobuf/timestamp.proto";
-
+import "google/protobuf/field_mask.proto";
+option go_package = "land.generic.event/gen;gen";
 // Audit structures to track the lifecycle of an event
-message AuditLog {
+message AuditAction {
   oneof action {
     CreationEvent created = 1;
     CancellationEvent cancelled = 2;
@@ -16,35 +17,21 @@ message AuditLog {
 
 message CreationEvent {
   string event_id = 1;
-  string user_id = 2;
-  google.protobuf.Timestamp when = 3;
+  google.protobuf.Timestamp when = 2;
 }
 
 message CancellationEvent {
   string event_id = 1;
-  string user_id = 2;
-  google.protobuf.Timestamp when = 3;
+  google.protobuf.Timestamp when = 2;
 }
 
 message DeletionEvent {
   string event_id = 1;
-  string user_id = 2;
-  google.protobuf.Timestamp when = 3;
+  google.protobuf.Timestamp when = 2;
 }
 
 message UpdateEvent {
   string event_id = 1;
-  string user_id = 2;
-  google.protobuf.Timestamp when = 3;
-  repeated Field changed_fields = 4;
-}
-
-message Field {
-  oneof field {
-    bool start = 1;
-    bool end = 2;
-    bool title = 3;
-    bool description = 4;
-    bool tags = 5;
-  }
+  google.protobuf.Timestamp when = 2;
+  google.protobuf.FieldMask update_Mask = 3;
 }

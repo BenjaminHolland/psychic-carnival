@@ -7,5 +7,5 @@ ktor:
       - land.generic.MonitoringKt.configureMonitoring
       - land.generic.SerializationKt.configureSerialization
       - land.generic.DIKt.configureDependencyInjection
-      - land.generic.GrpcKt.configureGrpc
+      - land.generic.event.GrpcKt.configureGrpc
       - land.generic.RoutingKt.configureRouting

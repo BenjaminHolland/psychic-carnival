@@ -1,9 +1,10 @@
 syntax = "proto3";
 
-package land.generic;
-option go_package = "land.generic/gen;gen";
-import "google/api/annotations.proto";
+package land.generic.calendar.v1;
+option go_package = "land.generic.event/gen;gen";
 import "gnostic/openapi/v3/annotations.proto";
+import "google/api/annotations.proto";
+
 
 // 1. Gnostic sets document-level OpenAPI metadata
 option (gnostic.openapi.v3.document) = {

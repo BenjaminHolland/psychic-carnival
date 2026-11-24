@@ -21,8 +21,30 @@ service EventService {
       tags: ["Events"]
     };
   }
+  rpc deleteEvent(DeleteEventRequest) returns (DeleteEventResponse){
+    option (google.api.http)={
+      post: "/v1/events",
+      body:"*"
+    };
+    option (gnostic.openapi.v3.operation) = {
+      summary: "Delete Event"
+      description: "Delete a calendar event"
+      operation_id: "deleteEvent"
+      tags: ["Events"]
+    };
+  }
 }
 
+message DeleteEventRequest{
+  string id = 1 [
+    (gnostic.openapi.v3.property) = {
+      description: "The id of the event to be deleted."
+    }
+  ];
+}
+message DeleteEventResponse {
+  bool success = 1;
+}
 message CreateEventResponse {
   Event event = 1;
 }

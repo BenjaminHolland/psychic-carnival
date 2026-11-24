@@ -10,14 +10,18 @@ plugins {
 application {
     mainClass = "io.ktor.server.netty.EngineMain"
 }
-rpc {
-    protoc()
-}
+//rpc {
+//    protoc()
+//}
 
 kotlin {
     jvmToolchain(21)
 }
 dependencies {
+    //  implementation("io.grpc:grpc-kotlin-stub:1.4.1")
+    //implementation("io.grpc:grpc-protobuf:1.68.1")
+    //implementation("com.google.protobuf:protobuf-kotlin:4.28.2")
+    implementation(libs.kotlinx.rpc.grpc.protobuf)
     implementation(ktorLibs.serialization.kotlinx.json)
     implementation(ktorLibs.server.callLogging)
     implementation(ktorLibs.server.config.yaml)

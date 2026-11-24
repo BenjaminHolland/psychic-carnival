@@ -1,4 +1,3 @@
-import kotlinx.rpc.protoc.grpcKotlinMultiplatformProtocPluginJarPath
 import kotlinx.rpc.protoc.proto
 
 plugins {
@@ -15,19 +14,23 @@ rpc {
             create("openapi") {
                     local {
                         // Point directly to the executable (e.g., ~/go/bin/protoc-gen-openapi)
-                        executor(rootProject.file("tools/bin/protoc-gen-openapi").absolutePath)
+                        executor(rootProject.file("third_party/tools/bin/protoc-gen-openapi").absolutePath)
                     }
             }
         }
     }
-
-
 }
 
 kotlin {
     jvm()
-
-
+//    linuxX64("linux") {
+//        binaries {
+//            sharedLib {
+//                // Optional: sets the output filename to libmylib.so (defaults to project name)
+//                baseName = "event.core"
+//            }
+//        }
+//    }
     sourceSets {
         commonMain{
             // use the openapi plugin.
@@ -43,9 +46,9 @@ kotlin {
             })
 
             dependencies {
-                implementation("io.grpc:grpc-kotlin-stub:1.4.1")
-                implementation("io.grpc:grpc-protobuf:1.68.1")
-                implementation("com.google.protobuf:protobuf-kotlin:4.28.2")
+              //  implementation("io.grpc:grpc-kotlin-stub:1.4.1")
+                //implementation("io.grpc:grpc-protobuf:1.68.1")
+               // implementation("com.google.protobuf:protobuf-kotlin:4.28.2")
                 implementation(libs.kotlinx.rpc.grpc.core)
                 implementation(libs.kotlinx.rpc.grpc.protobuf)
             }
